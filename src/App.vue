@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app">    
 
     <div class="hero is-white is-gradient is-bold">
 
@@ -48,11 +48,7 @@
 
 
 
-    <!-- <h1>Consultar datos</h1>
-    <div class="post" >
-      {{ post }}
 
-    </div> -->
  
 
   </div>
@@ -68,21 +64,23 @@ export default {
       posts: []
     }
   },
-  
+
   mounted() {
-    let vue = this;
+    let vue = this;    
     axios.get('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20')
     .then( function( response ) {
         vue.posts = response.data;
     })
-  },
   
-
+  },
   
     
   
 }
+
+
 </script>
+
 
 <style>
 
