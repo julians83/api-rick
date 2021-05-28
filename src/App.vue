@@ -42,6 +42,14 @@
       </div>
     </div>
   </div>
+  <div v-if="errored" >
+    <p class="text_error">
+      La URL introducida para conectar con la API es errada
+    </p>
+    <img class="error" src="./assets/Background.jpg" alt="">
+
+  </div>
+
 </div>
 </template>
 
@@ -53,6 +61,8 @@ export default {
   data: function(){
     return{
       posts: [],
+      loading: true,
+      errored: false,
       nameFilter: '',
       selectedStatusFilter: '',
       statusOptions: [
@@ -73,6 +83,11 @@ export default {
     .then( function( response ) {
         vue.posts = response.data;
     })
+    .catch(error => {
+        alert('No se puede consultar la API, revisa la URL introducida\n' + error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
   
   },
   
@@ -235,6 +250,27 @@ box-shadow:  15px 15px 30px #1e2d58,
 
 .Sombra{
   filter: grayscale(100%);
+}
+
+.Sombra:hover{
+  filter: none;
+  border: 3px solid red;
+}
+
+.error{
+  width: 50%;
+  height: 50%;
+  margin: 0 25%;
+  border-radius: 3rem;
+  box-shadow:  20px 20px 60px #233567,
+             -20px -20px 60px #233567;
+}
+
+.text_error{
+  font-family: var(--Titulo);
+  color: white;
+  font-size:4rem;
+  text-align: center;
 }
 
 /* Estilos Movil----------------------------------------------------------------- */
